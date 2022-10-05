@@ -69,7 +69,7 @@ public class BullyAlgorithm extends UnicastRemoteObject{
         }
 
         Registry machineRegistry = LocateRegistry.getRegistry(serverName, serverPort);
-        RmiInterface machineServerTime = (RmiInterface) machineRegistry.lookup("AppConstants.Server_Name");
+        RmiInterface machineServerTime = (RmiInterface) machineRegistry.lookup(AppConstants.SERVER_NAME);
         LocalTime machineTime = machineServerTime.getLocalTime();
         System.out.println("-----------------------------------------");
         System.out.println("Connection with machine " + machineNumber + " successfully established. Hour: "

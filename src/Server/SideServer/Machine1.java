@@ -18,7 +18,7 @@ public class Machine1 {
             LocalTime hour = LocalTime.parse(AppConstants.MACHINE_1_HOUR, formatter);
             RmiInterface machineServer = new RmiImplementation(hour,1);
             Registry registry = LocateRegistry.createRegistry(AppConstants.SERVER_PORT_1);
-            registry.rebind("AppConstants.Server_Name", machineServer);
+            registry.rebind(AppConstants.SERVER_NAME, machineServer);
             System.out.println(String.format("Machine 1 started on port %d [local time: %s].",
                     AppConstants.SERVER_PORT_1,
                     formatter.format(hour)));

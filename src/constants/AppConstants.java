@@ -1,7 +1,7 @@
 package constants;
 
 public interface AppConstants {
-    String SERVER_NAME = "AppConstants.Server_Name";
+    String SERVER_NAME = "localhost";
     int MAIN_SERVER_PORT= 3000;
     int SERVER_PORT_1 = 1500;
     int SERVER_PORT_2 = 1501;
