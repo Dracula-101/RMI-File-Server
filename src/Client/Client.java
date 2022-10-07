@@ -67,6 +67,7 @@ public class Client implements Serializable {
 
         try {
             byte[] mydata = inter.downloadFileFromServer(serverpath);
+            System.out.println(mydata);
             System.out.println("Downloading...");
             File clientpathfile = new File(clientpath);
             FileOutputStream out = new FileOutputStream(clientpathfile);

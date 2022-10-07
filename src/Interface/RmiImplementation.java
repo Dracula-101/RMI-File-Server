@@ -1,5 +1,7 @@
 package Interface;
 
+import Encryption.AesEncryption;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,7 +37,7 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
         try {
             File serverpathfile = new File(serverpath);
             FileOutputStream out = new FileOutputStream(serverpathfile);
-            byte[] data = mydata;
+            byte[] data = AesEncryption.encrypt(mydata);
             out.write(data);
             out.flush();
             out.close();
@@ -57,6 +59,8 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
         byte[] mydata;
 
         File serverpathfile = new File(serverpath);
+        System.out.println(serverpath);
+        System.out.println(serverpathfile);
         mydata = new byte[(int) serverpathfile.length()];
         FileInputStream in;
         try {
@@ -80,7 +84,7 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
         }
 
         System.out.println("Synchronized Time is : " + localTime.format(formatter));
-        return mydata;
+        return AesEncryption.decrypt(mydata);
 
     }
 
