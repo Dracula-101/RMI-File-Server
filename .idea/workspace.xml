@@ -23,11 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a2233dd-aa29-4af4-abe5-03ee70a977bd" name="Changes" comment="Initial Changes">
-      <change afterPath="$PROJECT_DIR$/src/Encryption/AesEncryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aduiown.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dawdw.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interface/RmiImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interface/RmiImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text1.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,15 +56,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/HP/Desktop/Projects/RMI-File-Server",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Desktop\Projects\RMI" />
@@ -183,45 +183,10 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Changes" />
     <MESSAGE value="Added Encryption&#10;Downloading (issue)" />
     <option name="LAST_COMMIT_MESSAGE" value="Added Encryption&#10;Downloading (issue)" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1665126391068">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1665126391068" />
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1665126856974">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1665126856974" />
-    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog" timestamp="1665127980412">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog/0.0.1536.834@0.0.1536.834" timestamp="1665127980412" />
-    <state width="1493" height="237" key="GridCell.Tab.0.bottom" timestamp="1665128595201">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="237" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1665128595201" />
-    <state width="1493" height="237" key="GridCell.Tab.0.center" timestamp="1665128595201">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="237" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1665128595201" />
-    <state width="1493" height="237" key="GridCell.Tab.0.left" timestamp="1665128595201">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="237" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1665128595201" />
-    <state width="1493" height="237" key="GridCell.Tab.0.right" timestamp="1665128595201">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state width="1493" height="237" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1665128595201" />
-    <state x="555" y="120" key="RollbackChangesDialog" timestamp="1665126724655">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="555" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1665126724655" />
   </component>
 </project>

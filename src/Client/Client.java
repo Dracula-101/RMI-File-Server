@@ -63,7 +63,7 @@ public class Client implements Serializable {
         }
     }
 
-    static void download() {
+    static void download(String serverpath) {
 
         try {
             byte[] mydata = inter.downloadFileFromServer(serverpath);
@@ -162,9 +162,8 @@ public class Client implements Serializable {
                     break;
 
                 case 2:
-                    getInput();
-
-                    download();
+                    download(
+                            getInput());
 
                     break;
 
