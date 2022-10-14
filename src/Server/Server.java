@@ -3,7 +3,6 @@ package Server;
 import ElectionAlgo.BullyAlgorithm;
 import Interface.RmiImplementation;
 import constants.AppConstants;
-
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
