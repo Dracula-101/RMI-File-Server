@@ -148,4 +148,16 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
     public void setDownflag(boolean downflag) {
         this.isProcessDown = downflag;
     }
+
+    @Override
+    public void adjustTime(LocalTime localTime, long avgDiff) throws RemoteException{
+        long localTimeNanos = localTime.toNanoOfDay();
+		long thisNanos = getLocalTime().toNanoOfDay();
+		var newNanos = thisNanos - localTimeNanos;
+		newNanos = newNanos * -1 + avgDiff + thisNanos;
+		LocalTime newLocalTime = LocalTime.ofNanoOfDay(newNanos);
+		this.localTime = newLocalTime;
+		System.out.println("Updated time: " + formatter.format(newLocalTime));
+        
+    }
 }
