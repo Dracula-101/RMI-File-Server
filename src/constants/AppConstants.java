@@ -7,8 +7,7 @@ public interface AppConstants {
     int SERVER_PORT_1 = 1500;
     int SERVER_PORT_2 = 1501;
     int SERVER_PORT_3 = 1502;
-
-    int TOKEN_SERVER = 5000;
+    int TOKEN_SERVER = 2000;
 
     // schedules
     String LOCAL_HOUR = "07:00:00";

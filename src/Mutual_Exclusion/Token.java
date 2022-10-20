@@ -1,10 +1,6 @@
 package Mutual_Exclusion;
 
-import Interface.RmiImplementation;
-import Interface.RmiInterface;
 import constants.AppConstants;
-
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -18,7 +14,7 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
     int tail;
 
     public Token() throws RemoteException {
-        token = new int[3];
+        token = new int[4];
         queue = new int[100];
         owner = -1;
         head = 0;
@@ -68,9 +64,9 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
     public static void main(String args[]) throws RemoteException {
         Token token = new Token();
         try {
-            RmiInterface tokenServer = new RmiImplementation();
+            // bind with token object
             Registry registry = LocateRegistry.createRegistry(AppConstants.TOKEN_SERVER);
-            registry.rebind(AppConstants.TOKEN, tokenServer);
+            registry.bind(AppConstants.TOKEN, token);
             System.out.println("Token Service is started.");
 
         } catch (Exception e) {

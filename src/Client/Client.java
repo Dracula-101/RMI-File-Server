@@ -67,7 +67,6 @@ public class Client implements Serializable {
 
         try {
             byte[] mydata = inter.downloadFileFromServer(serverpath);
-            System.out.println(mydata);
             System.out.println("Downloading...");
             File clientpathfile = new File(clientpath);
             FileOutputStream out = new FileOutputStream(clientpathfile);
@@ -142,13 +141,19 @@ public class Client implements Serializable {
         } catch (NotBoundException e1) {
             e1.printStackTrace();
         }
-        boolean shouldExit = false;
+        // boolean shouldExit = false;
         Scanner sc = new Scanner(System.in);
         System.out.println("\nFILE DATA SERVER\n");
-        while (!shouldExit) {
+        int choice = 0;
+
+        while (choice != 6) {
+            // make scanner not auto close
             System.out.print(
-                    "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit\n\nEnter the choice: ");
-            int choice = sc.nextInt();
+                    "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit");
+            System.out.println("\n\nEnter your choice ");
+            // scanner should not close
+            choice = sc.nextInt();
+
             switch (choice) {
                 case 1:
                     try {

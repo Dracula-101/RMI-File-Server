@@ -2,7 +2,6 @@ package Server;
 
 import Interface.RmiImplementation;
 import Interface.RmiInterface;
-import Mutual_Exclusion.TokenInterface;
 import constants.AppConstants;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,11 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Server extends UnicastRemoteObject {
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    int RN[];
-    boolean critical;
-    int no_of_requests;
-    TokenInterface token;
+	public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     protected Server() throws RemoteException {
         super();
@@ -98,17 +93,5 @@ public class Server extends UnicastRemoteObject {
 		return difServer / (times.length + 1);
 	}
 
-    public void setupToken() {
-        RN = new int[3];
-        no_of_requests = 0;
-        critical = false;
 
-        try {
-            Registry tokenRegistry = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, AppConstants.TOKEN_SERVER);
-            token = (TokenInterface) tokenRegistry.lookup(AppConstants.SERVER_NAME);
-        } catch (Exception e) {
-
-            System.out.println("Exception occurred : " + e.getMessage());
-        }
-    }
 }
