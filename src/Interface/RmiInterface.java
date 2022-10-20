@@ -24,4 +24,6 @@ public interface RmiInterface extends Remote {
     boolean isDownflag() throws RemoteException;
 
     boolean isCoordinatorFlag() throws RemoteException;
+
+    void adjustTime(LocalTime localTime, long avgDiff) throws RemoteException;
 }
