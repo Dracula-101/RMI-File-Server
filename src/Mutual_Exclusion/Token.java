@@ -12,6 +12,8 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
     int owner;
     int head;
     int tail;
+    boolean isUpload;
+    TokenState state;
 
     public Token() throws RemoteException {
         token = new int[4];
@@ -19,6 +21,7 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
         owner = -1;
         head = 0;
         tail = 0;
+        
     }
 
     public int[] getToken() throws RemoteException {
@@ -73,4 +76,8 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
             System.out.println("Exception" + e);
         }
     }
+}
+
+enum TokenState {
+    FREE, UPLOADING, DOWNLOADING, WAITING
 }

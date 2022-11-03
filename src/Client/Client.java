@@ -188,8 +188,9 @@ public class Client implements Serializable {
                     break;
 
                 case 6:
-                    shutDownClient();
                     sc.close();
+                    shutDownClient();
+                    
                     break;
                 default:
                     System.out.println("Please enter a valid number");
