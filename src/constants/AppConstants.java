@@ -3,7 +3,7 @@ package constants;
 public interface AppConstants {
     String SERVER_NAME = "localhost";
     String TOKEN = "Token";
-    int MAIN_SERVER_PORT= 3000;
+    int MAIN_SERVER_PORT = 3000;
     int SERVER_PORT_1 = 1500;
     int SERVER_PORT_2 = 1501;
     int SERVER_PORT_3 = 1502;
@@ -14,4 +14,19 @@ public interface AppConstants {
     String MACHINE_1_HOUR = "10:05:00";
     String MACHINE_2_HOUR = "17:27:00";
     String MACHINE_3_HOUR = "23:15:00";
+
+    //enum for the tokenstate
+    public class TokenState {
+        public static String FREE ="FREE";
+        public static String UPLOADING ="UPLOADING";
+        public static String DOWNLOADING ="DOWNLOADING";
+
+        public static String[] states = {FREE, UPLOADING, DOWNLOADING};
+        public String state = FREE;
+ 
+        public int portNumber;
+    }
+
+
 }
+

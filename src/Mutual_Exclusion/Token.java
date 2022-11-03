@@ -1,6 +1,9 @@
 package Mutual_Exclusion;
 
 import constants.AppConstants;
+import constants.AppConstants.TokenState;
+
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,27 +11,26 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Token extends UnicastRemoteObject implements TokenInterface {
     int token[];
-    int queue[];
+    TokenState[] queue;
     int owner;
     int head;
     int tail;
-    boolean isUpload;
-    TokenState state;
+    String state;
 
     public Token() throws RemoteException {
         token = new int[4];
-        queue = new int[100];
+        queue = new TokenState[100];
         owner = -1;
         head = 0;
         tail = 0;
-        
+        state = TokenState.FREE;
     }
 
     public int[] getToken() throws RemoteException {
         return token;
     }
 
-    public int[] getQueue() throws RemoteException {
+    public TokenState[] getQueue() throws RemoteException {
         return queue;
     }
 
@@ -44,16 +46,18 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
         return tail;
     }
 
-    public void setToken(int index, int value) throws RemoteException {
+    public void setToken(int index, int value, String state) throws RemoteException {
         this.token[index] = value;
+        this.state = state;
     }
 
-    public void setQueue(int[] queue) throws RemoteException {
+    public void setQueue(TokenState[] queue) throws RemoteException {
         this.queue = queue;
     }
 
     public void setOwner(int owner) throws RemoteException {
         this.owner = owner;
+
     }
 
     public void setHead(int head) throws RemoteException {
@@ -62,6 +66,18 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
 
     public void setTail(int tail) throws RemoteException {
         this.tail = tail;
+    }
+
+    public String getState() throws RemoteException {
+        return state;
+    }
+
+    public void setState(String state) throws RemoteException {
+        this.state = state;
+    }
+
+    public boolean isFree(String state) throws RemoteException {
+        return this.state != state;
     }
 
     public static void main(String args[]) throws RemoteException {
@@ -76,8 +92,4 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
             System.out.println("Exception" + e);
         }
     }
-}
-
-enum TokenState {
-    FREE, UPLOADING, DOWNLOADING, WAITING
 }

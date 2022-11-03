@@ -4,6 +4,7 @@ import Encryption.AesEncryption;
 import Mutual_Exclusion.Token;
 import Mutual_Exclusion.TokenInterface;
 import constants.AppConstants;
+import constants.AppConstants.TokenState;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +28,7 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
     boolean critical;
     int no_of_requests;
     // TokenInterface token;
-    TokenInterface dtoken;
+    TokenInterface token;
 
     public RmiImplementation(LocalTime localTime, int pid) throws RemoteException {
         File storageDir = new File(folderName);
@@ -40,29 +41,31 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
     }
 
     public RmiImplementation(Token token) throws RemoteException {
-        this.dtoken = token;
+        this.token = token;
     }
     public void uploadFileToServer(byte[] mydata, String serverpath, int length) throws RemoteException {
         try {
-            if (dtoken.getOwner() == -1) {
-                dtoken.setOwner(pid);
+            if (token.getOwner() != -1) {
+                token.setOwner(pid);
+                token.setState(TokenState.UPLOADING);
                 System.out.println("No owner");
                 no_of_requests++;
                 RN[pid]++;
-            } else {
-                sendRequest();
             }
-            while (dtoken.getOwner() != pid);
+            sendRequest(TokenState.UPLOADING);
+            while (token.getOwner() != pid && !token.isFree(TokenState.UPLOADING));
             System.out.println("Token for File Upload");
             critical = true;
             File serverpathfile = new File(serverpath);
             FileOutputStream out = new FileOutputStream(serverpathfile);
             byte[] data = AesEncryption.encrypt(mydata);
+            if(pid==0)
+            sleep(20000);
             out.write(data);
             out.flush();
             out.close();
             critical = false;
-            releaseToken();
+            releaseToken(TokenState.UPLOADING);
             System.out.println("Done writing data...");
             System.out.println("Synchronized Time is : " + localTime.format(formatter));
 
@@ -76,22 +79,20 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
     }
 
     public byte[] downloadFileFromServer(String serverpath) throws RemoteException {
-        if (dtoken.getOwner() == -1) {
-            dtoken.setOwner(pid);
+        if (token.getOwner() != -1) {
+            token.setOwner(pid);
+            token.setState(TokenState.DOWNLOADING);
             System.out.println("No owner");
             no_of_requests++;
             RN[pid]++;
-        } else {
-            sendRequest();
-        }
-        while (dtoken.getOwner() != pid)
+        } 
+        sendRequest(TokenState.DOWNLOADING);
+        while (token.getOwner() != pid && !token.isFree(TokenState.DOWNLOADING))
             ;
         System.out.println("Token for File Download");
         critical = true;
         byte[] mydata;
         File serverpathfile = new File(serverpath);
-        System.out.println(serverpath);
-        System.out.println(serverpathfile);
         mydata = new byte[(int) serverpathfile.length()];
         FileInputStream in;
         try {
@@ -114,7 +115,7 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
             e.printStackTrace();
         }
         critical = false;
-        releaseToken();
+        releaseToken(TokenState.DOWNLOADING);
         System.out.println("Token released");
         System.out.println("Synchronized Time is : " + localTime.format(formatter));
         return AesEncryption.decrypt(mydata);
@@ -204,21 +205,21 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
         try {
             // lookup token
             Registry registry = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, AppConstants.TOKEN_SERVER);
-            dtoken = (TokenInterface) registry.lookup(AppConstants.TOKEN);
+            token = (TokenInterface) registry.lookup(AppConstants.TOKEN);
         } catch (Exception e) {
 
             System.out.println("Exception in this token message : " + e.getMessage());
         }
     }
 
-    public void sendRequest() throws RemoteException {
+    public void sendRequest(String state) throws RemoteException {
         Registry myreg;
         no_of_requests++;
         for (int i = 0; i < 4; i++) {
             try {
                 myreg = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, pid);
                 RmiInterface server = (RmiInterface) myreg.lookup(AppConstants.SERVER_NAME);
-                server.recieveRequest(pid, no_of_requests);
+                server.recieveRequest(pid, no_of_requests, state);
             } catch (Exception e) {
 
                 System.out.println("Exception occurred : " + e.getMessage());
@@ -227,33 +228,50 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
     }
 
     @Override
-    public void recieveRequest(int serverPort, int no_of_requests) throws RemoteException {
+    public void recieveRequest(int serverPort, int no_of_requests, String state) throws RemoteException {
         System.out.println("Recieved request from " + serverPort);
         if (RN[serverPort] <= no_of_requests) {
             RN[serverPort] = no_of_requests;
-            if (dtoken.getToken()[serverPort] == RN[serverPort]) {// removed +1
-                if (dtoken.getOwner() == pid) {
+            if (token.getToken()[serverPort] == RN[serverPort]) {// removed +1
+                if (token.getOwner() == pid) {
                     if (critical) {
                         // token.queue = i;
                         System.out.println("Add to queue");
-                        dtoken.getQueue()[dtoken.getTail()] = serverPort;
-                        dtoken.setTail(dtoken.getTail() + 1);
+                        token.getQueue()[token.getTail()].portNumber = serverPort;
+                        token.getQueue()[token.getTail()].state = state;
+                        token.setTail(token.getTail() + 1);
                     } else {
                         System.out.println("Queue empty, setting owner");
-                        dtoken.setOwner(serverPort);
+                        token.setOwner(serverPort);
                     }
                 }
             }
         }
     }
 
-    public void releaseToken() throws RemoteException {
-        dtoken.setToken(pid, RN[pid]);
-        if (dtoken.getHead() != dtoken.getTail()) {
+    public void releaseToken(String state) throws RemoteException {
+        token.setToken(pid, RN[pid], state);
+        if (token.getHead() != token.getTail()) {
             System.out.println("Release token");
-            dtoken.setOwner(dtoken.getQueue()[dtoken.getHead()]);
-            System.out.println("New owner" + dtoken.getOwner());
-            dtoken.setHead(dtoken.getHead() + 1);
+            token.setOwner(token.getQueue()[token.getHead()].portNumber);
+            System.out.println("New owner" + token.getOwner());
+            token.setHead(token.getHead() + 1);
+            token.setState(token.getQueue()[token.getHead()].state);
+        }
+        else{
+            token.setState(TokenState.FREE);
         }
     }
+
+
+
+    //define thread sleep function
+    public void sleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

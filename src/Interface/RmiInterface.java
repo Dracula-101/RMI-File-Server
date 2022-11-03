@@ -27,5 +27,5 @@ public interface RmiInterface extends Remote {
 
     void adjustTime(LocalTime localTime, long avgDiff) throws RemoteException;
 
-    void recieveRequest(int serverPort, int no_of_requests) throws RemoteException;
+    void recieveRequest(int serverPort, int no_of_requests, String state) throws RemoteException;
 }
