@@ -22,15 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a2233dd-aa29-4af4-abe5-03ee70a977bd" name="Changes" comment="Added Token in RMI-File-Server">
-      <change afterPath="$PROJECT_DIR$/src/Exception/Exceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dawd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dawda.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dawdadw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mutual_Exclusion/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mutual_Exclusion/Token.java" afterDir="false" />
-    </list>
+    <list default="true" id="2a2233dd-aa29-4af4-abe5-03ee70a977bd" name="Changes" comment="Added Token in RMI-File-Server" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666289155656</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Mutual Exclusion">
+      <created>1667547460166</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667547460166</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -229,7 +228,8 @@
     <MESSAGE value="Added Encryption&#10;Downloading (issue)" />
     <MESSAGE value="Corrected download for server" />
     <MESSAGE value="Added Token in RMI-File-Server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Token in RMI-File-Server" />
+    <MESSAGE value="Added Mutual Exclusion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Mutual Exclusion" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1667544150952">
