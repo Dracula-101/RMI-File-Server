@@ -23,7 +23,8 @@ public class Machine1 {
                     AppConstants.SERVER_PORT_1,
                     formatter.format(hour)));
         } catch (Exception ex) {
-            System.out.println(ex);
+            //print stack track
+            ex.printStackTrace();
         }
     }
 

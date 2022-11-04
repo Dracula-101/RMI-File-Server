@@ -12,8 +12,7 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
     int owner;
     int head;
     int tail;
-    boolean isUpload;
-    TokenState state;
+    boolean critical= false;
 
     public Token() throws RemoteException {
         token = new int[4];
@@ -56,6 +55,18 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
         this.owner = owner;
     }
 
+    public boolean isCritical() throws RemoteException {
+        return critical;
+    }
+
+    public boolean getCritical() throws RemoteException {
+        return critical;
+    }
+
+    public void setCritical(boolean critical) throws RemoteException {
+        this.critical = critical;
+    }
+
     public void setHead(int head) throws RemoteException {
         this.head = head;
     }
@@ -76,8 +87,4 @@ public class Token extends UnicastRemoteObject implements TokenInterface {
             System.out.println("Exception" + e);
         }
     }
-}
-
-enum TokenState {
-    FREE, UPLOADING, DOWNLOADING, WAITING
 }

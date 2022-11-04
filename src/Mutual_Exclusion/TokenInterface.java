@@ -14,6 +14,12 @@ public interface TokenInterface extends Remote {
 
     public int getTail() throws RemoteException;
 
+    public boolean isCritical() throws RemoteException;
+
+    public boolean getCritical() throws RemoteException;
+
+    public void setCritical(boolean critical) throws RemoteException;
+
     public void setToken(int index, int value) throws RemoteException;
 
     public void setQueue(int[] queue) throws RemoteException;
