@@ -44,9 +44,9 @@ public class Client implements Serializable {
         try {
             myreg = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, AppConstants.LOAD_BALANCER_PORT);
             loadBalancerInterface = (LoadBalancerInterface) myreg.lookup(AppConstants.LOAD_BALANCER_NAME);
-            inter = loadBalancerInterface.getServer();
             System.out.println(environment+loadBalancerInterface.getServerPort());
             System.out.println("Connected to server on port " + loadBalancerInterface.getServerPort());
+            inter = loadBalancerInterface.getServer();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
