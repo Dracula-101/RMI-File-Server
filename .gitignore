@@ -28,6 +28,6 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-### Java ##
+#remove everything in Storage folder except tthe folder named Storage
 *.class
-!Storage/**/
+Storage/*

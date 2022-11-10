@@ -2,10 +2,12 @@ package constants;
 
 public interface AppConstants {
     String SERVER_NAME = "localhost";
+    String LOAD_BALANCER_NAME = "loadBalancer";
     int MAIN_SERVER_PORT= 3000;
     int SERVER_PORT_1 = 1500;
     int SERVER_PORT_2 = 1501;
     int SERVER_PORT_3 = 1502;
+    int LOAD_BALANCER_PORT = 2000;
 
     // schedules
     String LOCAL_HOUR = "07:00:00";

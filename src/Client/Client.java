@@ -1,6 +1,7 @@
 package Client;
 
 import Interface.RmiInterface;
+import LoadBalancer.LoadBalancerInterface;
 import constants.AppConstants;
 
 import java.io.*;
@@ -25,23 +26,27 @@ public class Client implements Serializable {
     static String rm = "rm";
     static String shutdown = "shutdown";
     static RmiInterface inter;
+    static LoadBalancerInterface loadBalancerInterface;
 
+    
     static void startServer() throws NotBoundException {
         environment = System.getenv("SERVER_PORT");
         environment = "127.0.0.1:";
-        System.out.println(environment);
-        System.out.println("Enter the port number");
-        portnumber = sc.nextInt();
-        environment = environment + portnumber;
-        hostname = environment.split(":")[0];
+        // System.out.println("Enter the port number");
+        // portnumber = sc.nextInt();
+        // environment = environment + portnumber;
+        // hostname = environment.split(":")[0];
 
-        portnumber = Integer.parseInt(environment.split(":")[1]);
-        System.out.println("seeking connection on:" + environment);
+        // portnumber = Integer.parseInt(environment.split(":")[1]);
+        // System.out.println("seeking connection on:" + environment);
 
         Registry myreg;
         try {
-            myreg = LocateRegistry.getRegistry(hostname, portnumber);
-            inter = (RmiInterface) myreg.lookup(AppConstants.SERVER_NAME);
+            myreg = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, AppConstants.LOAD_BALANCER_PORT);
+            loadBalancerInterface = (LoadBalancerInterface) myreg.lookup(AppConstants.LOAD_BALANCER_NAME);
+            inter = loadBalancerInterface.getServer();
+            System.out.println(environment+loadBalancerInterface.getServerPort());
+            System.out.println("Connected to server on port " + loadBalancerInterface.getServerPort());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
