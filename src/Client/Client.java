@@ -28,7 +28,63 @@ public class Client implements Serializable {
     static RmiInterface inter;
     static LoadBalancerInterface loadBalancerInterface;
 
-    
+    public static void main(String[] args) {
+        try {
+            startServer();
+        } catch (NotBoundException e1) {
+            e1.printStackTrace();
+        }
+        boolean shouldExit = false;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nFILE DATA SERVER\n");
+        while (!shouldExit) {
+            System.out.print(
+                    "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit\n\nEnter the choice: ");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    try {
+                        upload(
+                                getInput()
+
+                        );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case 2:
+                    download(
+                            getInput());
+
+                    break;
+
+                case 3:
+                    createDir(
+                            getName("Enter the folder name: ", serverpath));
+                    break;
+
+                case 4:
+
+                    deleteDir(getName("Enter the folder name to be deleted: ", serverpath));
+                    break;
+
+                case 5:
+                    System.out.print("\nThe List of the files in database are: \n");
+                    listFiles();
+                    break;
+
+                case 6:
+                    shutDownClient();
+                    sc.close();
+                    break;
+                default:
+                    System.out.println("Please enter a valid number");
+            }
+
+        }
+    }
+
     static void startServer() throws NotBoundException {
         environment = System.getenv("SERVER_PORT");
         environment = "127.0.0.1:";
@@ -45,8 +101,15 @@ public class Client implements Serializable {
             myreg = LocateRegistry.getRegistry(AppConstants.SERVER_NAME, AppConstants.LOAD_BALANCER_PORT);
             loadBalancerInterface = (LoadBalancerInterface) myreg.lookup(AppConstants.LOAD_BALANCER_NAME);
             System.out.println(environment+loadBalancerInterface.getServerPort());
-            System.out.println("Connected to server on port " + loadBalancerInterface.getServerPort());
+            System.out.println("Connecting to server...");
             inter = loadBalancerInterface.getServer();
+            if(inter != null){
+                System.out.println("Connected to server on port " + loadBalancerInterface.getServerPort());
+            }
+            else{
+                System.out.println("Connection failed. All Servers Busy");
+                System.exit(0);
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -141,61 +204,5 @@ public class Client implements Serializable {
         System.out.println("Client has shutdown. Close the console");
     }
 
-    public static void main(String[] args) {
-        try {
-            startServer();
-        } catch (NotBoundException e1) {
-            e1.printStackTrace();
-        }
-        boolean shouldExit = false;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\nFILE DATA SERVER\n");
-        while (!shouldExit) {
-            System.out.print(
-                    "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit\n\nEnter the choice: ");
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    try {
-                        upload(
-                                getInput()
-
-                        );
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-
-                case 2:
-                    download(
-                            getInput());
-
-                    break;
-
-                case 3:
-                    createDir(
-                            getName("Enter the folder name: ", serverpath));
-                    break;
-
-                case 4:
-
-                    deleteDir(getName("Enter the folder name to be deleted: ", serverpath));
-                    break;
-
-                case 5:
-                    System.out.print("\nThe List of the files in database are: \n");
-                    listFiles();
-                    break;
-
-                case 6:
-                    shutDownClient();
-                    sc.close();
-                    break;
-                default:
-                    System.out.println("Please enter a valid number");
-            }
-
-        }
-    }
-
+    
 }
