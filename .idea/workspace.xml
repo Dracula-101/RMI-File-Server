@@ -23,12 +23,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a2233dd-aa29-4af4-abe5-03ee70a977bd" name="Changes" comment="Initial Changes">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SqlServer/MySqlServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aduiown.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dawdw.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RMI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RMI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ElectionAlgo/BullyAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ElectionAlgo/BullyAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Encryption/AesEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Encryption/AesEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/RmiImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/RmiImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interface/RmiInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interface/RmiInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoadBalancer/LoadBalancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoadBalancer/LoadBalancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoadBalancer/LoadBalancerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoadBalancer/LoadBalancerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/SideServer/Machine1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SideServer/Machine1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/SideServer/Machine2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SideServer/Machine2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/SideServer/Machine3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server/SideServer/Machine3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/AppConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/constants/AppConstants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +73,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/HP/Desktop/Projects/RMI-File-Server",
+    "last_opened_file_path": "C:/Users/Dilip Patel/Downloads/MySqlJdbcDriver/mysql-connector-j-8.0.31.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "advanced.settings",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -70,7 +91,7 @@
       <recent name="C:\Users\HP\Desktop\Projects\RMI\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.MySqlServer">
     <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Client.Client" />
       <module name="RMI" />
@@ -123,6 +144,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MySqlServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SqlServer.MySqlServer" />
+      <module name="RMI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SqlServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Server" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server.Server" />
       <module name="RMI" />
@@ -142,7 +176,13 @@
       <item itemvalue="Application.Machine2" />
       <item itemvalue="Application.Machine3" />
       <item itemvalue="Application.Server" />
+      <item itemvalue="Application.MySqlServer" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MySqlServer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
