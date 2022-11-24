@@ -14,7 +14,7 @@ public exports = function(changeEvent) {
 
     const updateDescription = changeEvent.updateDescription;
 
-    const mainServer = context.services.get("Server1").db("dataserver1").collection("data");
+    const mainServer = context.services.get("Server1").db("mainserver").collection("data");
 
     // upload the updated document
    try {
