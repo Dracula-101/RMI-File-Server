@@ -2,6 +2,7 @@ package Client;
 
 import Interface.RmiInterface;
 import LoadBalancer.LoadBalancerInterface;
+import MongoServer.MongoDBServer;
 import constants.AppConstants;
 
 import java.io.*;
@@ -29,59 +30,74 @@ public class Client implements Serializable {
     static LoadBalancerInterface loadBalancerInterface;
 
     public static void main(String[] args) {
-        try {
-            startServer();
-        } catch (NotBoundException e1) {
-            e1.printStackTrace();
-        }
+        
         boolean shouldExit = false;
         Scanner sc = new Scanner(System.in);
         System.out.println("\nFILE DATA SERVER\n");
-        while (!shouldExit) {
-            System.out.print(
-                    "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit\n\nEnter the choice: ");
+        while(true){
+            System.out.println("Enter the type of server: ");
+            System.out.println("1. Local Server");
+            System.out.println("2. Cloud Server");
             int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    try {
-                        upload(
-                                getInput()
-
-                        );
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            if (choice == 2) {
+                MongoDBServer server= new MongoDBServer();
+                server.startServer();
+            } else if (choice == 1) {
+                try {
+                    startServer();
+                } catch (NotBoundException e1) {
+                    e1.printStackTrace();
+                }
+                while (!shouldExit) {
+                    System.out.print(
+                            "\n1.Upload File\n2.Download File\n3.Make Directory\n4.Remove Directory\n5.List Directories\n6.Exit\n\nEnter the choice: ");
+                    int newChoice = sc.nextInt();
+                    switch (newChoice) {
+                        case 1:
+                            try {
+                                upload(
+                                        getInput()
+        
+                                );
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+        
+                        case 2:
+                            download(
+                                    getInput());
+        
+                            break;
+        
+                        case 3:
+                            createDir(
+                                    getName("Enter the folder name: ", serverpath));
+                            break;
+        
+                        case 4:
+        
+                            deleteDir(getName("Enter the folder name to be deleted: ", serverpath));
+                            break;
+        
+                        case 5:
+                            System.out.print("\nThe List of the files in database are: \n");
+                            listFiles();
+                            break;
+        
+                        case 6:
+                            shutDownClient();
+                            sc.close();
+                            break;
+                        default:
+                            System.out.println("Please enter a valid number");
                     }
-                    break;
-
-                case 2:
-                    download(
-                            getInput());
-
-                    break;
-
-                case 3:
-                    createDir(
-                            getName("Enter the folder name: ", serverpath));
-                    break;
-
-                case 4:
-
-                    deleteDir(getName("Enter the folder name to be deleted: ", serverpath));
-                    break;
-
-                case 5:
-                    System.out.print("\nThe List of the files in database are: \n");
-                    listFiles();
-                    break;
-
-                case 6:
-                    shutDownClient();
-                    sc.close();
-                    break;
-                default:
-                    System.out.println("Please enter a valid number");
+        
+                }
+            
+            } else {
+                System.out.println("Please enter a valid number");
             }
-
         }
     }
 

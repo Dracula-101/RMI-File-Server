@@ -24,7 +24,7 @@ public class MongoDBServer {
     static MongoDatabase mainServer, sideServer;
     static Scanner sc = new Scanner(System.in);
     
-    MongoDBServer(){
+    public MongoDBServer(){
         try {
             server = MongoClients.create(mongoUrl);
         } catch (Exception e) {
@@ -98,13 +98,13 @@ public class MongoDBServer {
                 System.out.println("Error: " + e);
             }
             sideServer.getCollection("data").updateOne(new Document("name", filename), new Document("$set", new Document("data", outputData)));
-            System.out.print("Do you want to download the file? (y/n)");
-            String choice = sc.nextLine();
-            if (choice.equals("y")) {
-                downloadFile(filename, sideServer.getCollection("data").find(new Document("name", filename)).first(), isSideServer);
-            } else {
-                System.out.println("File not found");
-            }
+            // System.out.print("Do you want to download the file? (y/n)");
+            // String choice = sc.nextLine();
+            // if (choice.equals("y")) {
+            //     downloadFile(filename, sideServer.getCollection("data").find(new Document("name", filename)).first(), isSideServer);
+            // } else {
+            //     System.out.println("File not found");
+            // }
             System.out.println("File updated successfully to MongoDB Server");
             sc.close();
         } else {
@@ -112,7 +112,7 @@ public class MongoDBServer {
         }
     }
 
-    public static void main(String[] args) {
+    public void startServer() {
 
 
         MongoDBServer server = new MongoDBServer();
